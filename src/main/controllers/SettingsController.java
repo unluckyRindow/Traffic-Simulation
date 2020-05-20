@@ -15,7 +15,7 @@ public class SettingsController {
     private SimulationController simulationController;
 
     @FXML
-    public void startSimulation() throws IOException {
+    public void startSimulation() throws IOException, InterruptedException {
         System.out.println("witam");
         Simulation simulation = new Simulation();
         setSimulationScreen();

@@ -25,6 +25,7 @@ public class SimulationController {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/RoadScreen.fxml"));
         Pane pane = loader.load();
         RoadController roadController = loader.getController();
+        roadController.drawRoad();
         roadController.setMainController(mainController);
         roadController.setMenuController(menuController);
         roadController.setSettingsController(settingsController);

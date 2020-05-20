@@ -12,7 +12,7 @@ public class MenuController {
     private SettingsController settingsController;
 
     @FXML
-    public void startSimulation() throws IOException {
+    public void startSimulation() throws IOException, InterruptedException {
         System.out.println("symulacjia start witam");
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/SettingsScreen.fxml"));
         loader.load();
