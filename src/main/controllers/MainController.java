@@ -7,21 +7,15 @@ import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 
-//Controller for main window
 public class MainController {
 
     @FXML
     private StackPane mainStackPane;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/StartScreen.fxml"));
-        Pane pane = null;
-        try {
-            pane = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Pane pane = loader.load();
         StartScreenController startScreenController = loader.getController();
         startScreenController.setMainController(this);
         setScreen(pane);
