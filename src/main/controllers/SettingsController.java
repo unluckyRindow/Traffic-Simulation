@@ -12,12 +12,14 @@ public class SettingsController {
 
     private MainController mainController;
     private MenuController menuController;
+    private SimulationController simulationController;
 
     @FXML
     public void startSimulation() throws IOException {
         System.out.println("witam");
         Simulation simulation = new Simulation();
-        setSimulationScreen().setSimulation(simulation);
+        setSimulationScreen();
+        simulationController.setSimulation(simulation);
 //        simulationController.getSimulation().start();
 
     }
@@ -27,17 +29,20 @@ public class SettingsController {
         Platform.exit();
     }
 
-    public SimulationController setSimulationScreen() throws IOException {
+    public void setSimulationScreen() throws IOException {
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/SimulationScreen.fxml"));
         Pane pane = loader.load();
         SimulationController simulationController = loader.getController();
-
         simulationController.setMainController(mainController);
         simulationController.setMenuController(menuController);
+        this.setSimulationController(simulationController);
         simulationController.setSettingsController(this);
         mainController.setScreen(pane);
-        return simulationController;
+    }
+
+    public void setSimulationController(SimulationController simulationController) {
+        this.simulationController = simulationController;
     }
 
     public void setMenuController(MenuController menuController) {
