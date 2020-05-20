@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.MenuController">
+   <children>
+      <Label layoutX="378.0" layoutY="76.0" text="wyd man">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="221.0" layoutY="296.0" minWidth="123.0" mnemonicParsing="false" onAction="#openSettings" text="Settings" />
+      <Button layoutX="221.0" layoutY="392.0" minWidth="123.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+      <Button layoutX="221.0" layoutY="197.0" minWidth="123.0" mnemonicParsing="false" onAction="#startSimulation" text="Start" />
+      <Label layoutX="551.0" layoutY="202.0" text="Start with default options" />
+      <Label layoutX="474.0" layoutY="301.0" text="Go to settings to set your simulation preferences" />
+      <Label layoutX="608.0" layoutY="397.0" text="żegnam" />
+   </children>
+</Pane>

@@ -9,6 +9,7 @@ import java.io.IOException;
 
 //Controller for main window
 public class MainController {
+
     @FXML
     private StackPane mainStackPane;
 
@@ -21,6 +22,13 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        StartScreenController startScreenController = loader.getController();
+        startScreenController.setMainController(this);
+        setScreen(pane);
+    }
+
+    public void setScreen(Pane pane) {
+        mainStackPane.getChildren().clear();
         mainStackPane.getChildren().add(pane);
     }
 }

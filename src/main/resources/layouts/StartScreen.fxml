@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#openSettings" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.StartScreenController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openMenu" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.StartScreenController">
    <children>
       <Label layoutX="186.0" layoutY="31.0" text="Symulacja IV obwodnicy Krakowa" textAlignment="CENTER">
          <font>
@@ -24,6 +22,6 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button defaultButton="true" layoutX="418.0" layoutY="525.0" mnemonicParsing="false" onKeyTyped="#openSettings" opacity="0.0" text="f" />
+      <Button defaultButton="true" layoutX="418.0" layoutY="525.0" mnemonicParsing="false" onKeyTyped="#openMenu" opacity="0.0" text="f" />
    </children>
 </Pane>
