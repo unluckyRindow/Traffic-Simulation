@@ -11,7 +11,7 @@ public class StartScreenController {
     private MainController mainController;
 
     @FXML
-    public void openMenu() throws InterruptedException {
+    public void openMenu() {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/MenuScreen.fxml"));
         Pane pane = null;
         try {
@@ -19,6 +19,8 @@ public class StartScreenController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        MenuController menuController = loader.getController();
+        menuController.setMainController(mainController);
         mainController.setScreen(pane);
     }
 

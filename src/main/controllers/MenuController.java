@@ -2,14 +2,20 @@ package main.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 import main.road.Cell;
 import main.road.Lane;
 import main.road.Road;
 import main.vehicle.Car;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class MenuController {
+
+    private MainController mainController;
+
     @FXML
     public void startSimulation() throws InterruptedException {
 
@@ -76,12 +82,25 @@ public class MenuController {
 
 
     }
+
     @FXML
     public void openSettings(){
-
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/SettingsScreen.fxml"));
+        Pane pane = null;
+        try {
+            pane = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mainController.setScreen(pane);
     }
+
     @FXML
     public void exit(){
         Platform.exit();
+    }
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
     }
 }
