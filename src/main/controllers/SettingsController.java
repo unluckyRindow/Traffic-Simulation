@@ -4,11 +4,14 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-import main.Simulation;
+import main.simulation.Settings;
+import main.simulation.Simulation;
 
 import java.io.IOException;
 
 public class SettingsController {
+
+    private Settings settings;
 
     private MainController mainController;
     private MenuController menuController;
@@ -21,7 +24,6 @@ public class SettingsController {
         setSimulationScreen();
         simulationController.setSimulation(simulation);
         simulationController.getSimulation().start();
-
     }
 
     @FXML
@@ -51,5 +53,13 @@ public class SettingsController {
 
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
+    }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
     }
 }

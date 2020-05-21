@@ -1,4 +1,4 @@
-package main;
+package main.simulation;
 
 import main.road.Cell;
 import main.road.Lane;
@@ -31,13 +31,12 @@ public class Simulation {
     }
 
 
-    //TODO it works for now lol
     public void start() throws InterruptedException {
 
         System.out.println("Simulation method start");
 
 //        SAMPLE SIMULATION
-
+// code below should be executed by SimulationInitializer instance based on Setting object
         Road road = new Road(3, 500);
 
         road.getLanes()
@@ -89,23 +88,9 @@ public class Simulation {
         roads.add(road);
         roads.add(road);
 
+        //code below should be only body of this method
         Timer timer = new Timer();
-        timer.schedule(new Updater(), 0 ,2000);
-
-
-        /*
-        while (isActive = true) {
-            TimeUnit.SECONDS.sleep(1);
-            road.process();
-
-            for(Lane lane: road.getLanes()){
-                for (Cell cell: lane.getLane()) System.out.print(cell.isOccupied() ? "@" : "-");
-                System.out.println();
-            }
-        System.out.println();
-        }
-*/
-
+        timer.schedule(new Updater(), 0 ,1000);
     }
 
 

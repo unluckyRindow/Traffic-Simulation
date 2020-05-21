@@ -11,12 +11,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import main.Simulation;
+import main.simulation.Simulation;
 import main.road.Road;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class RoadController {
 
@@ -24,6 +22,8 @@ public class RoadController {
     ScrollPane firstRoad;
     @FXML
     ScrollPane secondRoad;
+
+    Timeline updater;
 
     private Simulation simulation;
     private SettingsController settingsController;
@@ -48,11 +48,20 @@ public class RoadController {
                 rectangle2.setWidth(24);
                 rectangle2.setFill(Color.ROSYBROWN);
 
-                if (simulation.getRoads().get(0).getLanes().get(i).getLane()[j].isOccupied()) {
-                    rectangle1.setFill(Color.RED);
-                } else {
-                    rectangle1.setFill(Color.ROYALBLUE);
-                }
+                //TODO dynamic choose of road
+                rectangle1.setFill(
+                        simulation.getRoads().get(0).getLanes().get(i).getLane()[j].isOccupied() ?
+                                Color.RED :
+                                Color.ROYALBLUE
+                );
+
+                //draw lane backwards, hardcoded road from simulation.getRoads() TODO dynamic choose of road
+                rectangle2.setFill(
+                        simulation.getRoads().get(1).getLanes().get(i).getLane()[simulation.getRoads().get(0).getSIZE() - j - 1].isOccupied() ?
+                                Color.RED :
+                                Color.ROYALBLUE
+                );
+
 
                 firstGrid.add(rectangle1, j, i,1,1);
                 firstGrid.setHgap(7);
@@ -70,32 +79,29 @@ public class RoadController {
 
     @FXML
     public void openSettings() throws IOException {
-        //settings not needed here imo, button used for testing
 
-        //menuController.openSettings();
-
-        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+        //TODO launch updater after opening roadscreen, not by clicking button
+        //code below launches view updater
+        updater = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
                 draw(simulation.getRoads().get(0), simulation.getRoads().get(1));
             }
         }));
-        fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
-        fiveSecondsWonder.play();
+        updater.setCycleCount(Timeline.INDEFINITE);
+        updater.play();
     }
 
     @FXML
     public void showSimulationScreen() throws IOException {
         settingsController.setSimulationScreen();
+        updater.stop();
     }
 
     @FXML
     public void exit(){
-        //for testing aswell
         Platform.exit();
-
-
     }
 
     public void setSettingsController(SettingsController settingsController) {

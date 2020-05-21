@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-import main.Simulation;
+import main.simulation.Simulation;
 
 import java.io.IOException;
 
