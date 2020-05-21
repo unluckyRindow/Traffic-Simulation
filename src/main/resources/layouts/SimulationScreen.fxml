@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.SimulationController">
    <children>
-      <ImageView fitHeight="504.0" fitWidth="890.0" layoutX="9.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="508.0" fitWidth="759.0" layoutX="84.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../1200px-Kraków_beltways.svg.png" />
+            <Image url="@../map_cut.png" />
          </image>
       </ImageView>
       <Button layoutX="200.0" layoutY="530.0" minWidth="123.0" mnemonicParsing="false" onAction="#openSettings" text="Settings" />
       <Button layoutX="577.0" layoutY="530.0" minWidth="123.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
-      <Label layoutX="278.0" layoutY="22.0" text="tu sie bedzie klikało na mapie, ale Kamil musi wyskrobać mapę a tego labela trzeba usunąć" />
-      <Button layoutX="372.0" layoutY="480.0" mnemonicParsing="false" onAction="#showRoadScreen" text="example road screen" />
+      <Button layoutX="372.0" layoutY="530.0" mnemonicParsing="false" onAction="#showRoadScreen" text="example road screen" />
    </children>
 </Pane>
