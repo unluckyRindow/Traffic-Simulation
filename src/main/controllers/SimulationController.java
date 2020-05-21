@@ -26,7 +26,6 @@ public class SimulationController {
         Pane pane = loader.load();
         RoadController roadController = loader.getController();
         roadController.setMainController(mainController);
-        roadController.setMenuController(menuController);
         roadController.setSettingsController(settingsController);
         roadController.setSimulation(simulation);
         mainController.setScreen(pane);

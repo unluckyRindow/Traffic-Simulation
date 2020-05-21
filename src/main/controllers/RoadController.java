@@ -29,8 +29,6 @@ public class RoadController {
 
     private Simulation simulation;
     private SettingsController settingsController;
-    private MenuController menuController;
-    private MainController mainController;
 
 
     //method to draw road
@@ -122,13 +120,7 @@ public class RoadController {
         this.settingsController = settingsController;
     }
 
-
-    public void setMenuController(MenuController menuController) {
-        this.menuController = menuController;
-    }
-
     public void setMainController(MainController mainController) {
-        this.mainController = mainController;
     }
 
     public Simulation getSimulation() {
