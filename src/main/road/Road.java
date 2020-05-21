@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 public class Road {
     private ArrayList<Lane> lanes;
+    //length of each lane
+    private final int SIZE;
 
     //generates given quantity of lanes with given length of road
     public Road(int lanesQuantity, int length){
+        SIZE = length;
         lanes = new ArrayList<Lane>();
         for (int i = 0; i < lanesQuantity; i++){
-            lanes.add(new Lane(length));
+            lanes.add(new Lane(SIZE));
         }
     }
 
@@ -30,5 +33,9 @@ public class Road {
                 if (lane.getLane()[i].isOccupied()) lane.moveVehicle(i);
             }
         }
+    }
+
+    public int getSIZE() {
+        return SIZE;
     }
 }

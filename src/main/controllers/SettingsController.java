@@ -16,7 +16,7 @@ public class SettingsController {
 
     @FXML
     public void startSimulation() throws IOException, InterruptedException {
-        System.out.println("witam");
+        System.out.println("simulation start from settings");
         Simulation simulation = new Simulation();
         setSimulationScreen();
         simulationController.setSimulation(simulation);

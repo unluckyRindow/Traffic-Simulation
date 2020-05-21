@@ -12,7 +12,7 @@ public class Simulation {
     private boolean isActive;
 
     public Simulation(){
-        System.out.println("symulacja witam");
+        System.out.println("simulation initialized");
     }
 
     public void start() throws InterruptedException {
