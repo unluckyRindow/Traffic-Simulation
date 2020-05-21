@@ -1,32 +1,42 @@
 package main.simulation;
 
-import main.road.Cell;
-import main.road.Lane;
+import main.road.Bypass;
 import main.road.Road;
 import main.vehicle.Car;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class Simulation {
 
     private boolean isActive;
-    private ArrayList<Road> roads;
+    //old
+    //private ArrayList<Road> roads;
+    private Bypass bypass;
 
 
     class Updater extends TimerTask {
         @Override
         public void run() {
-            for (Road road: roads){
-                road.process();
+            //old
+            //for (Road road: roads){
+            //  road.process();
+            //}
+            //new
+            for (int i = 0; i < bypass.segmentsQuantity; i++){
+                bypass.segmentsClockWise.get(i).process();
+                bypass.segmentsClockWise.get(i).process();
             }
         }
     }
 
-    public Simulation(){
-        roads = new ArrayList<>();
+    public Simulation(Settings settings){
+        //old
+        //roads = new ArrayList<>();
+        //new
+        bypass = new Bypass();
+        bypass.init(settings);
         System.out.println("simulation initialized");
     }
 
@@ -37,7 +47,7 @@ public class Simulation {
 
 //        SAMPLE SIMULATION
 // code below should be executed by SimulationInitializer instance based on Setting object
-        Road road = new Road(3, 500);
+       /* Road road = new Road(3, 500);
 
         road.getLanes()
                 .get(0)
@@ -87,8 +97,9 @@ public class Simulation {
 
         roads.add(road);
         roads.add(road);
-
+*/
         //code below should be only body of this method
+
         Timer timer = new Timer();
         timer.schedule(new Updater(), 0 ,1000);
     }
@@ -102,11 +113,11 @@ public class Simulation {
         return isActive;
     }
 
-    public ArrayList<Road> getRoads() {
-        return roads;
+    public Bypass getBypass() {
+        return bypass;
     }
 
-    public void setRoads(ArrayList<Road> roads) {
-        this.roads = roads;
+    public void setBypass(Bypass bypass) {
+        this.bypass = bypass;
     }
 }

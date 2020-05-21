@@ -3,12 +3,16 @@ package main.road;
 import java.util.ArrayList;
 
 public class Road {
+    private int roadId;
     private ArrayList<Lane> lanes;
-    //length of each lane
+    private ArrayList<Road> allSegments;
+    private int nextSegmentId;
     private final int SIZE;
 
     //generates given quantity of lanes with given length of road
-    public Road(int lanesQuantity, int length){
+    public Road(int roadId, int lanesQuantity, int length, ArrayList<Road> allSegments){
+        this.roadId = roadId;
+        this.allSegments = allSegments;
         SIZE = length;
         lanes = new ArrayList<Lane>();
         for (int i = 0; i < lanesQuantity; i++){
@@ -28,7 +32,6 @@ public class Road {
     // to process vehicle movement
     public void process(){
         for (Lane lane: lanes){
-
             for (int i = lane.getSize() - 1; i >= 0; i--){
                 if (lane.getLane()[i].isOccupied()) lane.moveVehicle(i);
             }
@@ -37,5 +40,29 @@ public class Road {
 
     public int getSIZE() {
         return SIZE;
+    }
+
+    public int getRoadId() {
+        return roadId;
+    }
+
+    public void setRoadId(int roadId) {
+        this.roadId = roadId;
+    }
+
+    public ArrayList<Road> getAllSegments() {
+        return allSegments;
+    }
+
+    public void setAllSegments(ArrayList<Road> allSegments) {
+        this.allSegments = allSegments;
+    }
+
+    public int getNextSegmentId() {
+        return nextSegmentId;
+    }
+
+    public void setNextSegmentId(int nextSegmentId) {
+        this.nextSegmentId = nextSegmentId;
     }
 }

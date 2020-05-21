@@ -20,7 +20,7 @@ public class SettingsController {
     @FXML
     public void startSimulation() throws IOException, InterruptedException {
         System.out.println("simulation start from settings");
-        Simulation simulation = new Simulation();
+        Simulation simulation = new Simulation(settings);
         setSimulationScreen();
         simulationController.setSimulation(simulation);
         simulationController.getSimulation().start();

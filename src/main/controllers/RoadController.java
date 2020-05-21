@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import main.road.Bypass;
+import main.simulation.Settings;
 import main.simulation.Simulation;
 import main.road.Road;
 
@@ -48,16 +50,29 @@ public class RoadController {
                 rectangle2.setWidth(24);
                 rectangle2.setFill(Color.ROSYBROWN);
 
-                //TODO dynamic choose of road
+                //old
+                /*
                 rectangle1.setFill(
                         simulation.getRoads().get(0).getLanes().get(i).getLane()[j].isOccupied() ?
+                                Color.RED :
+                                Color.ROYALBLUE
+                );
+                                rectangle2.setFill(
+                        simulation.getRoads().get(1).getLanes().get(i).getLane()[simulation.getRoads().get(0).getSIZE() - j - 1].isOccupied() ?
+                                Color.RED :
+                                Color.ROYALBLUE
+                );
+*/
+                //TODO dynamic choose of road
+                rectangle1.setFill(
+                        simulation.getBypass().segmentsClockWise.get(0).getLanes().get(i).getLane()[j].isOccupied() ?
                                 Color.RED :
                                 Color.ROYALBLUE
                 );
 
                 //draw lane backwards, hardcoded road from simulation.getRoads() TODO dynamic choose of road
                 rectangle2.setFill(
-                        simulation.getRoads().get(1).getLanes().get(i).getLane()[simulation.getRoads().get(0).getSIZE() - j - 1].isOccupied() ?
+                        simulation.getBypass().segmentsAntiClockWise.get(0).getLanes().get(i).getLane()[simulation.getBypass().segmentsAntiClockWise.get(0).getSIZE() - j - 1].isOccupied() ?
                                 Color.RED :
                                 Color.ROYALBLUE
                 );
@@ -86,7 +101,7 @@ public class RoadController {
 
             @Override
             public void handle(ActionEvent event) {
-                draw(simulation.getRoads().get(0), simulation.getRoads().get(1));
+                draw(simulation.getBypass().segmentsClockWise.get(0), simulation.getBypass().segmentsAntiClockWise.get(0));
             }
         }));
         updater.setCycleCount(Timeline.INDEFINITE);
@@ -96,7 +111,6 @@ public class RoadController {
     @FXML
     public void showSimulationScreen() throws IOException {
         settingsController.setSimulationScreen();
-        updater.stop();
     }
 
     @FXML
