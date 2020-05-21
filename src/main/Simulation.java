@@ -5,21 +5,40 @@ import main.road.Lane;
 import main.road.Road;
 import main.vehicle.Car;
 
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class Simulation {
 
     private boolean isActive;
+    private ArrayList<Road> roads;
+
+
+    class Updater extends TimerTask {
+        @Override
+        public void run() {
+            for (Road road: roads){
+                road.process();
+            }
+        }
+    }
 
     public Simulation(){
+        roads = new ArrayList<>();
         System.out.println("simulation initialized");
     }
 
+
+    //TODO it works for now lol
     public void start() throws InterruptedException {
+
+        System.out.println("Simulation method start");
 
 //        SAMPLE SIMULATION
 
-        Road road = new Road(3, 100);
+        Road road = new Road(3, 500);
 
         road.getLanes()
                 .get(0)
@@ -67,6 +86,14 @@ public class Simulation {
                 .getLane()[20]
                 .setOccupied(true);
 
+        roads.add(road);
+        roads.add(road);
+
+        Timer timer = new Timer();
+        timer.schedule(new Updater(), 0 ,1000);
+
+
+        /*
         while (isActive = true) {
             TimeUnit.SECONDS.sleep(1);
             road.process();
@@ -77,9 +104,24 @@ public class Simulation {
             }
         System.out.println();
         }
+*/
+
     }
+
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public boolean getActive(){
+        return isActive;
+    }
+
+    public ArrayList<Road> getRoads() {
+        return roads;
+    }
+
+    public void setRoads(ArrayList<Road> roads) {
+        this.roads = roads;
     }
 }

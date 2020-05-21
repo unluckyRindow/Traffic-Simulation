@@ -1,3 +1,9 @@
 #roadPane{
     -fx-background-color: #228B22;
 }
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+.scroll-pane {
+   -fx-background-color: #4169E1;
+}

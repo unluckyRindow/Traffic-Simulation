@@ -20,7 +20,7 @@ public class SettingsController {
         Simulation simulation = new Simulation();
         setSimulationScreen();
         simulationController.setSimulation(simulation);
-//        simulationController.getSimulation().start();
+        simulationController.getSimulation().start();
 
     }
 

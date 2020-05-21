@@ -2,8 +2,6 @@ package main.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -12,6 +10,8 @@ import main.Simulation;
 import main.road.Road;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class RoadController {
 
@@ -26,24 +26,38 @@ public class RoadController {
     private MainController mainController;
 
 
+    //TODO change timertask to timeline probably for fx support
+    class Updater extends TimerTask {
 
-    //method to draw empty road at start
-    public void init(Road firstRoad, Road secondRoad){
+        @Override
+        public void run() {
+            draw(simulation.getRoads().get(0), simulation.getRoads().get(1));
+        }
+    }
 
+
+    //method to draw road
+    public void draw(Road firstRoad, Road secondRoad){
         GridPane firstGrid = new GridPane();
         GridPane secondGrid = new GridPane();
         Rectangle rectangle1, rectangle2;
 
         for (int i = 0; i < firstRoad.getLanes().size(); i++){
             for (int j = 0; j < firstRoad.getSIZE(); j++){
+
                 rectangle1 = new Rectangle();
-                rectangle1.setHeight(30);
-                rectangle1.setWidth(30);
-                rectangle1.setFill(Color.ROYALBLUE);
+                rectangle1.setHeight(24);
+                rectangle1.setWidth(24);
                 rectangle2 = new Rectangle();
-                rectangle2.setHeight(30);
-                rectangle2.setWidth(30);
-                rectangle2.setFill(Color.ROYALBLUE);
+                rectangle2.setHeight(24);
+                rectangle2.setWidth(24);
+                rectangle2.setFill(Color.ROSYBROWN);
+
+                if (simulation.getRoads().get(0).getLanes().get(i).getLane()[j].isOccupied()) {
+                    rectangle1.setFill(Color.RED);
+                } else {
+                    rectangle1.setFill(Color.ROYALBLUE);
+                }
 
                 firstGrid.add(rectangle1, j, i,1,1);
                 firstGrid.setHgap(7);
@@ -58,10 +72,6 @@ public class RoadController {
         this.secondRoad.setContent(secondGrid);
     }
 
-    //method to update view every second
-    public void update(){
-
-    }
 
     @FXML
     public void openSettings() throws IOException {
@@ -69,10 +79,11 @@ public class RoadController {
 
         //menuController.openSettings();
 
-        Road road1 = new Road(3,200);
-        Road road2 = new Road(3,200);
 
-        init(road1, road2);
+        draw(simulation.getRoads().get(0), simulation.getRoads().get(1));
+
+        Timer timer = new Timer();
+        timer.schedule(new Updater(), 0 ,1000);
     }
 
     @FXML
@@ -82,7 +93,10 @@ public class RoadController {
 
     @FXML
     public void exit(){
+        //for testing aswell
         Platform.exit();
+
+
     }
 
     public void setSettingsController(SettingsController settingsController) {
