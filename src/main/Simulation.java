@@ -90,7 +90,7 @@ public class Simulation {
         roads.add(road);
 
         Timer timer = new Timer();
-        timer.schedule(new Updater(), 0 ,1000);
+        timer.schedule(new Updater(), 0 ,2000);
 
 
         /*

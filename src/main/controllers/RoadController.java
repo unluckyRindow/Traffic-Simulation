@@ -1,11 +1,16 @@
 package main.controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import main.Simulation;
 import main.road.Road;
 
@@ -24,16 +29,6 @@ public class RoadController {
     private SettingsController settingsController;
     private MenuController menuController;
     private MainController mainController;
-
-
-    //TODO change timertask to timeline probably for fx support
-    class Updater extends TimerTask {
-
-        @Override
-        public void run() {
-            draw(simulation.getRoads().get(0), simulation.getRoads().get(1));
-        }
-    }
 
 
     //method to draw road
@@ -79,11 +74,15 @@ public class RoadController {
 
         //menuController.openSettings();
 
+        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
-        draw(simulation.getRoads().get(0), simulation.getRoads().get(1));
-
-        Timer timer = new Timer();
-        timer.schedule(new Updater(), 0 ,1000);
+            @Override
+            public void handle(ActionEvent event) {
+                draw(simulation.getRoads().get(0), simulation.getRoads().get(1));
+            }
+        }));
+        fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
+        fiveSecondsWonder.play();
     }
 
     @FXML
