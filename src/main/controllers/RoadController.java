@@ -7,8 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import main.road.Bypass;
@@ -33,6 +35,7 @@ public class RoadController {
 
 
     public void startViewUpdater(){
+        draw(simulation.getBypass().segmentsClockWise.get(roadId), simulation.getBypass().segmentsAntiClockWise.get(roadId));
         updater = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
             @Override
@@ -58,27 +61,21 @@ public class RoadController {
                 rectangle2 = new Rectangle();
                 rectangle2.setHeight(24);
                 rectangle2.setWidth(24);
-                rectangle2.setFill(Color.ROSYBROWN);
 
                 rectangle1.setFill(
                         simulation.getBypass().segmentsClockWise.get(roadId).getLanes().get(i).getLane()[j].isOccupied() ?
-                                Color.RED :
+                                new ImagePattern(new Image("src/main/resources/car_clockwise.png")) :
                                 Color.ROYALBLUE
                 );
 
                 rectangle2.setFill(
                         simulation.getBypass().segmentsAntiClockWise.get(roadId).getLanes().get(i).getLane()[simulation.getBypass().segmentsAntiClockWise.get(roadId).getSIZE() - j - 1].isOccupied() ?
-                                Color.RED :
+                                new ImagePattern(new Image("src/main/resources/car_anticlockwise.png")) :
                                 Color.ROYALBLUE
                 );
 
-
                 firstGrid.add(rectangle1, j, i,1,1);
-                firstGrid.setHgap(7);
-                firstGrid.setVgap(7);
                 secondGrid.add(rectangle2, j, i,1,1);
-                secondGrid.setHgap(7);
-                secondGrid.setVgap(7);
 
             }
         }
@@ -88,19 +85,9 @@ public class RoadController {
 
 
     @FXML
-    public void openSettings() throws IOException {
-
-    }
-
-    @FXML
     public void showSimulationScreen() throws IOException {
         updater.stop();
         settingsController.setSimulationScreen();
-    }
-
-    @FXML
-    public void exit(){
-        Platform.exit();
     }
 
     public void setSettingsController(SettingsController settingsController) {

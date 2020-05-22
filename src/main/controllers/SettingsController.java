@@ -27,8 +27,12 @@ public class SettingsController {
     }
 
     @FXML
-    public void exit(){
-        Platform.exit();
+    public void backToMenu() throws IOException{
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/MenuScreen.fxml"));
+        Pane pane = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.setMainController(mainController);
+        mainController.setScreen(pane);
     }
 
     public void setSimulationScreen() throws IOException {

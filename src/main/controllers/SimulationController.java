@@ -19,11 +19,6 @@ public class SimulationController {
 
 
     @FXML
-    public void openSettings() throws IOException {
-        menuController.openSettings();
-    }
-
-    @FXML
     public void showRoadScreen(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource() ;
         int segmentId = Integer.parseInt((String) node.getUserData());
@@ -40,8 +35,12 @@ public class SimulationController {
     }
 
     @FXML
-    public void exit(){
-        Platform.exit();
+    public void backToMenu() throws IOException{
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/MenuScreen.fxml"));
+        Pane pane = loader.load();
+        MenuController menuController = loader.getController();
+        menuController.setMainController(mainController);
+        mainController.setScreen(pane);
     }
 
     public void setSimulation(Simulation simulation) {

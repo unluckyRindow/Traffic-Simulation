@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.SettingsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.SettingsController">
    <children>
       <Label layoutX="323.0" layoutY="100.0" text="Sample Settings">
          <font>
@@ -19,7 +14,7 @@
       <CheckBox layoutX="230.0" layoutY="290.0" mnemonicParsing="false" text="CheckBox" />
       <ChoiceBox layoutX="375.0" layoutY="285.0" prefWidth="150.0" />
       <Button layoutX="262.0" layoutY="461.0" minWidth="123.0" mnemonicParsing="false" onAction="#startSimulation" text="Start" />
-      <Button layoutX="517.0" layoutY="461.0" minWidth="123.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+      <Button layoutX="517.0" layoutY="461.0" minWidth="123.0" mnemonicParsing="false" onAction="#backToMenu" text="Back" />
       <RadioButton layoutX="578.0" layoutY="290.0" mnemonicParsing="false" text="RadioButton" />
    </children>
 </Pane>
