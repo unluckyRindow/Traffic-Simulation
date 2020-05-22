@@ -93,7 +93,7 @@ public class SimulationInitializer {
                 int posY = ThreadLocalRandom.current().nextInt(/*currentRoadLanes.size()*/2);
                 if (!currentRoadLanes.get(posY).getLane()[posX].isOccupied()){
                     currentRoadLanes.get(posY).getLane()[posX]
-                            .setVehicle(new Car(2, ThreadLocalRandom.current().nextInt(settings.getvMaxL(), settigns.getvMaxH()), settings.getSlowProbability(), posX, posY));
+                            .setVehicle(new Car(settings.getvMaxL() - 1, ThreadLocalRandom.current().nextInt(settings.getvMaxL(), settigns.getvMaxH()), settings.getSlowProbability(), posX, posY));
                     currentRoadLanes.get(posY).getLane()[posX].setOccupied(true);
                     occupied = false;
                 }
