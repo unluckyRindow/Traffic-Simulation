@@ -39,48 +39,14 @@ public class SimulationInitializer {
     }
 
     //TODO vehicles insert based on settings
-    public void insertVehicles(Bypass bypass, Settings settigns){
-        this.settings = settigns;
-
-/*        bypass.segmentsClockWise.get(0).getLanes()
-                .get(0)
-                .getLane()[350]
-                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, 350, 0));
-        bypass.segmentsClockWise.get(0).getLanes()
-                .get(0)
-                .getLane()[350]
-                .setOccupied(true);*/
+    public void insertVehicles(Bypass bypass, Settings settings){
+        this.settings = settings;
 
         for (int i = 0; i < bypass.segmentsQuantity; i++){
-//            for (int j = 0; j < 2; j++){
-//                for (int k = 0; k < 100; k++){
-//                    if (k % 10 == 0){
-//                        bypass.segmentsClockWise.get(i).getLanes()
-//                                .get(j)
-//                                .getLane()[k]
-//                                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, k, j));
-//                        bypass.segmentsClockWise.get(i).getLanes()
-//                                .get(j)
-//                                .getLane()[k]
-//                                .setOccupied(true);
-//
-//
-//                        bypass.segmentsAntiClockWise.get(i).getLanes()
-//                                .get(j)
-//                                .getLane()[k]
-//                                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, k, j));
-//                        bypass.segmentsAntiClockWise.get(i).getLanes()
-//                                .get(j)
-//                                .getLane()[k]
-//                                .setOccupied(true);
-//                    }
-//                }
-//            }
-
-            int nMax = ThreadLocalRandom.current().nextInt(settigns.getnCars() - 5, settigns.getnCars() + 6);
-            placeCars(settigns, i, nMax, bypass.segmentsClockWise);
-            nMax = ThreadLocalRandom.current().nextInt(settigns.getnCars() - 5, settigns.getnCars() + 6);
-            placeCars(settigns, i, nMax, bypass.segmentsAntiClockWise);
+            int nMax = ThreadLocalRandom.current().nextInt(settings.getnCars() - 5, settings.getnCars() + 6);
+            placeCars(settings, i, nMax, bypass.segmentsClockWise);
+            nMax = ThreadLocalRandom.current().nextInt(settings.getnCars() - 5, settings.getnCars() + 6);
+            placeCars(settings, i, nMax, bypass.segmentsAntiClockWise);
         }
     }
 
