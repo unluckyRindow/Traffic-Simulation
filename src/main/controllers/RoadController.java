@@ -2,7 +2,6 @@ package main.controllers;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -64,13 +63,13 @@ public class RoadController {
 
                 rectangle1.setFill(
                         simulation.getBypass().segmentsClockWise.get(roadId).getLanes().get(i).getLane()[j].isOccupied() ?
-                                new ImagePattern(new Image("src/main/resources/car_clockwise.png")) :
+                                new ImagePattern(new Image("main/resources/car_clockwise.png")) :
                                 Color.ROYALBLUE
                 );
 
                 rectangle2.setFill(
                         simulation.getBypass().segmentsAntiClockWise.get(roadId).getLanes().get(i).getLane()[simulation.getBypass().segmentsAntiClockWise.get(roadId).getSIZE() - j - 1].isOccupied() ?
-                                new ImagePattern(new Image("src/main/resources/car_anticlockwise.png")) :
+                                new ImagePattern(new Image("main/resources/car_anticlockwise.png")) :
                                 Color.ROYALBLUE
                 );
 
