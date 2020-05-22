@@ -1,8 +1,8 @@
 package main.controllers;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.Pane;
 import main.simulation.Settings;
 import main.simulation.Simulation;
@@ -19,7 +19,15 @@ public class SettingsController {
     private SimulationController simulationController;
 
     @FXML
+    private ChoiceBox time;
+
+    @FXML
+    private ChoiceBox weather;
+
+    @FXML
     public void startSimulation() throws IOException, InterruptedException {
+        settings.setnCars((String) time.getValue());
+        settings.setSlowProbabilityAndvMax((String) weather.getValue());
         simulation = new Simulation(settings);
         setSimulationScreen();
         simulationController.setSimulation(simulation);

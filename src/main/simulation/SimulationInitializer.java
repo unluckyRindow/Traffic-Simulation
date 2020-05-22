@@ -1,6 +1,8 @@
 package main.simulation;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import main.road.Bypass;
+import main.road.Lane;
 import main.road.Road;
 import main.vehicle.Car;
 
@@ -50,34 +52,54 @@ public class SimulationInitializer {
                 .setOccupied(true);*/
 
         for (int i = 0; i < bypass.segmentsQuantity; i++){
-            for (int j = 0; j < 2; j++){
-                for (int k = 0; k < 100; k++){
-                    if (k % 10 == 0){
-                        bypass.segmentsClockWise.get(i).getLanes()
-                                .get(j)
-                                .getLane()[k]
-                                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, k, j));
-                        bypass.segmentsClockWise.get(i).getLanes()
-                                .get(j)
-                                .getLane()[k]
-                                .setOccupied(true);
+//            for (int j = 0; j < 2; j++){
+//                for (int k = 0; k < 100; k++){
+//                    if (k % 10 == 0){
+//                        bypass.segmentsClockWise.get(i).getLanes()
+//                                .get(j)
+//                                .getLane()[k]
+//                                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, k, j));
+//                        bypass.segmentsClockWise.get(i).getLanes()
+//                                .get(j)
+//                                .getLane()[k]
+//                                .setOccupied(true);
+//
+//
+//                        bypass.segmentsAntiClockWise.get(i).getLanes()
+//                                .get(j)
+//                                .getLane()[k]
+//                                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, k, j));
+//                        bypass.segmentsAntiClockWise.get(i).getLanes()
+//                                .get(j)
+//                                .getLane()[k]
+//                                .setOccupied(true);
+//                    }
+//                }
+//            }
 
+            int nMax = ThreadLocalRandom.current().nextInt(settigns.getnCars() - 5, settigns.getnCars() + 6);
+            placeCars(settigns, i, nMax, bypass.segmentsClockWise);
+            nMax = ThreadLocalRandom.current().nextInt(settigns.getnCars() - 5, settigns.getnCars() + 6);
+            placeCars(settigns, i, nMax, bypass.segmentsAntiClockWise);
+        }
+    }
 
-                        bypass.segmentsAntiClockWise.get(i).getLanes()
-                                .get(j)
-                                .getLane()[k]
-                                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, k, j));
-                        bypass.segmentsAntiClockWise.get(i).getLanes()
-                                .get(j)
-                                .getLane()[k]
-                                .setOccupied(true);
-                    }
+    private void placeCars(Settings settigns, int i, int nMax, ArrayList<Road> roads) {
+        for (int j = 0; j < nMax; j++){
+            boolean occupied = true;
+            ArrayList<Lane> currentRoadLanes = roads.get(i).getLanes();
+            while(occupied){
+                int posX = ThreadLocalRandom.current().nextInt(currentRoadLanes.get(0).getSize());
+                int posY = ThreadLocalRandom.current().nextInt(/*currentRoadLanes.size()*/2);
+                if (!currentRoadLanes.get(posY).getLane()[posX].isOccupied()){
+                    currentRoadLanes.get(posY).getLane()[posX]
+                            .setVehicle(new Car(2, ThreadLocalRandom.current().nextInt(settings.getvMaxL(), settigns.getvMaxH()), settings.getSlowProbability(), posX, posY));
+                    currentRoadLanes.get(posY).getLane()[posX].setOccupied(true);
+                    occupied = false;
                 }
             }
         }
     }
-
-
 
 
     public int getSegmentsQuantity() {
