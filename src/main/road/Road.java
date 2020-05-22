@@ -6,7 +6,7 @@ public class Road {
     private int roadId;
     private ArrayList<Lane> lanes;
     private ArrayList<Road> allSegments;
-    private int nextSegmentId;
+    private Road nextSegment;
     private final int SIZE;
 
     //generates given quantity of lanes with given length of road
@@ -16,7 +16,7 @@ public class Road {
         SIZE = length;
         lanes = new ArrayList<Lane>();
         for (int i = 0; i < lanesQuantity; i++){
-            lanes.add(new Lane(SIZE));
+            lanes.add(new Lane(SIZE, this));
         }
     }
 
@@ -58,11 +58,11 @@ public class Road {
         this.allSegments = allSegments;
     }
 
-    public int getNextSegmentId() {
-        return nextSegmentId;
+    public Road getNextSegment() {
+        return nextSegment;
     }
 
-    public void setNextSegmentId(int nextSegmentId) {
-        this.nextSegmentId = nextSegmentId;
+    public void setNextSegment(Road nextSegment) {
+        this.nextSegment = nextSegment;
     }
 }

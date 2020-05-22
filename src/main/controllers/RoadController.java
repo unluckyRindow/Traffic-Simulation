@@ -29,9 +29,21 @@ public class RoadController {
 
     private Simulation simulation;
     private SettingsController settingsController;
+    private int roadId;
 
 
-    //method to draw road
+    public void startViewUpdater(){
+        updater = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                draw(simulation.getBypass().segmentsClockWise.get(roadId), simulation.getBypass().segmentsAntiClockWise.get(roadId));
+            }
+        }));
+        updater.setCycleCount(Timeline.INDEFINITE);
+        updater.play();
+    }
+
     public void draw(Road firstRoad, Road secondRoad){
         GridPane firstGrid = new GridPane();
         GridPane secondGrid = new GridPane();
@@ -48,29 +60,14 @@ public class RoadController {
                 rectangle2.setWidth(24);
                 rectangle2.setFill(Color.ROSYBROWN);
 
-                //old
-                /*
                 rectangle1.setFill(
-                        simulation.getRoads().get(0).getLanes().get(i).getLane()[j].isOccupied() ?
-                                Color.RED :
-                                Color.ROYALBLUE
-                );
-                                rectangle2.setFill(
-                        simulation.getRoads().get(1).getLanes().get(i).getLane()[simulation.getRoads().get(0).getSIZE() - j - 1].isOccupied() ?
-                                Color.RED :
-                                Color.ROYALBLUE
-                );
-*/
-                //TODO dynamic choose of road
-                rectangle1.setFill(
-                        simulation.getBypass().segmentsClockWise.get(0).getLanes().get(i).getLane()[j].isOccupied() ?
+                        simulation.getBypass().segmentsClockWise.get(roadId).getLanes().get(i).getLane()[j].isOccupied() ?
                                 Color.RED :
                                 Color.ROYALBLUE
                 );
 
-                //draw lane backwards, hardcoded road from simulation.getRoads() TODO dynamic choose of road
                 rectangle2.setFill(
-                        simulation.getBypass().segmentsAntiClockWise.get(0).getLanes().get(i).getLane()[simulation.getBypass().segmentsAntiClockWise.get(0).getSIZE() - j - 1].isOccupied() ?
+                        simulation.getBypass().segmentsAntiClockWise.get(roadId).getLanes().get(i).getLane()[simulation.getBypass().segmentsAntiClockWise.get(roadId).getSIZE() - j - 1].isOccupied() ?
                                 Color.RED :
                                 Color.ROYALBLUE
                 );
@@ -93,21 +90,11 @@ public class RoadController {
     @FXML
     public void openSettings() throws IOException {
 
-        //TODO launch updater after opening roadscreen, not by clicking button
-        //code below launches view updater
-        updater = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                draw(simulation.getBypass().segmentsClockWise.get(0), simulation.getBypass().segmentsAntiClockWise.get(0));
-            }
-        }));
-        updater.setCycleCount(Timeline.INDEFINITE);
-        updater.play();
     }
 
     @FXML
     public void showSimulationScreen() throws IOException {
+        updater.stop();
         settingsController.setSimulationScreen();
     }
 
@@ -120,8 +107,6 @@ public class RoadController {
         this.settingsController = settingsController;
     }
 
-    public void setMainController(MainController mainController) {
-    }
 
     public Simulation getSimulation() {
         return simulation;
@@ -129,5 +114,13 @@ public class RoadController {
 
     public void setSimulation(Simulation simulation) {
         this.simulation = simulation;
+    }
+
+    public int getRoadId() {
+        return roadId;
+    }
+
+    public void setRoadId(int roadId) {
+        this.roadId = roadId;
     }
 }

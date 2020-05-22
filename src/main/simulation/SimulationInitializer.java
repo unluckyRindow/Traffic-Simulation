@@ -1,8 +1,11 @@
 package main.simulation;
 
+import main.road.Bypass;
 import main.road.Road;
+import main.vehicle.Car;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 //init simulation.roads with roads with lanes with cars etc etc
 public class SimulationInitializer {
@@ -15,21 +18,63 @@ public class SimulationInitializer {
     public void initRoadsClockWise(ArrayList<Road> roads){
         for (int i = 0; i < segmentsQuantity; i++){
             Road road = new Road(i, lanesOnSegmentsQuantity[i], segmentsLengths[i], roads);
-            road.setNextSegmentId(i == 17 ? 0 : i + 1);
             roads.add(road);
         }
+        for (int i = 0; i < segmentsQuantity; i++){
+            roads.get(i).setNextSegment(roads.get(i == 17 ? 0 : i + 1));
+        }
+
     }
 
     public void initRoadsAntiClockWise(ArrayList<Road> roads){
         for (int i = 0; i < segmentsQuantity; i++){
             Road road = new Road(i, lanesOnSegmentsQuantity[i], segmentsLengths[i], roads);
-            road.setNextSegmentId(i == 0 ? 17 : i - 1);
             roads.add(road);
+        }
+        for (int i = 0; i < segmentsQuantity; i++){
+            roads.get(i).setNextSegment(roads.get(i == 0 ? 17 : i - 1));
         }
     }
 
-    public void insertVehicles(Settings settigns){
+    //TODO vehicles insert based on settings
+    public void insertVehicles(Bypass bypass, Settings settigns){
         this.settings = settigns;
+
+/*        bypass.segmentsClockWise.get(0).getLanes()
+                .get(0)
+                .getLane()[350]
+                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, 350, 0));
+        bypass.segmentsClockWise.get(0).getLanes()
+                .get(0)
+                .getLane()[350]
+                .setOccupied(true);*/
+
+        for (int i = 0; i < bypass.segmentsQuantity; i++){
+            for (int j = 0; j < 2; j++){
+                for (int k = 0; k < 100; k++){
+                    if (k % 10 == 0){
+                        bypass.segmentsClockWise.get(i).getLanes()
+                                .get(j)
+                                .getLane()[k]
+                                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, k, j));
+                        bypass.segmentsClockWise.get(i).getLanes()
+                                .get(j)
+                                .getLane()[k]
+                                .setOccupied(true);
+
+
+                        bypass.segmentsAntiClockWise.get(i).getLanes()
+                                .get(j)
+                                .getLane()[k]
+                                .setVehicle(new Car(3, ThreadLocalRandom.current().nextInt(3, 6), 0.05, k, j));
+                        bypass.segmentsAntiClockWise.get(i).getLanes()
+                                .get(j)
+                                .getLane()[k]
+                                .setOccupied(true);
+                    }
+                }
+            }
+        }
     }
 
 

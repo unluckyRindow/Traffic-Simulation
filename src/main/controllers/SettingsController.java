@@ -10,8 +10,9 @@ import main.simulation.Simulation;
 import java.io.IOException;
 
 public class SettingsController {
-
-    private Settings settings;
+    //init here not to get null pointer, to fix later
+    private Settings settings = new Settings();
+    private Simulation simulation;
 
     private MainController mainController;
     private MenuController menuController;
@@ -19,8 +20,7 @@ public class SettingsController {
 
     @FXML
     public void startSimulation() throws IOException, InterruptedException {
-        System.out.println("simulation start from settings");
-        Simulation simulation = new Simulation(settings);
+        simulation = new Simulation(settings);
         setSimulationScreen();
         simulationController.setSimulation(simulation);
         simulationController.getSimulation().start();
@@ -32,13 +32,14 @@ public class SettingsController {
     }
 
     public void setSimulationScreen() throws IOException {
-
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/SimulationScreen.fxml"));
         Pane pane = loader.load();
+
         SimulationController simulationController = loader.getController();
         simulationController.setMainController(mainController);
         simulationController.setMenuController(menuController);
-        this.setSimulationController(simulationController);
+        simulationController.setSimulation(simulation);
+        setSimulationController(simulationController);
         simulationController.setSettingsController(this);
         mainController.setScreen(pane);
     }
@@ -61,5 +62,13 @@ public class SettingsController {
 
     public void setSettings(Settings settings) {
         this.settings = settings;
+    }
+
+    public Simulation getSimulation() {
+        return simulation;
+    }
+
+    public void setSimulation(Simulation simulation) {
+        this.simulation = simulation;
     }
 }

@@ -1,8 +1,10 @@
 package main.controllers;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import main.simulation.Simulation;
 
@@ -15,19 +17,25 @@ public class SimulationController {
     private SettingsController settingsController;
     private MainController mainController;
 
+
     @FXML
     public void openSettings() throws IOException {
         menuController.openSettings();
     }
 
     @FXML
-    public void showRoadScreen() throws IOException {
+    public void showRoadScreen(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource() ;
+        int segmentId = Integer.parseInt((String) node.getUserData());
+
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/RoadScreen.fxml"));
         Pane pane = loader.load();
+
         RoadController roadController = loader.getController();
-        roadController.setMainController(mainController);
         roadController.setSettingsController(settingsController);
         roadController.setSimulation(simulation);
+        roadController.setRoadId(segmentId);
+        roadController.startViewUpdater();
         mainController.setScreen(pane);
     }
 

@@ -13,14 +13,16 @@ public class Bypass {
 
     private SimulationInitializer simulationInitializer;
 
-    public void init(Settings settings){
+    public Bypass(){
         simulationInitializer = new SimulationInitializer();
         segmentsQuantity = simulationInitializer.getSegmentsQuantity();
         segmentsClockWise = new ArrayList<>();
         segmentsAntiClockWise = new ArrayList<>();
+    }
 
+    public void init(Settings settings){
         simulationInitializer.initRoadsClockWise(segmentsClockWise);
         simulationInitializer.initRoadsAntiClockWise(segmentsAntiClockWise);
-        simulationInitializer.insertVehicles(settings);
+        simulationInitializer.insertVehicles(this, settings);
     }
 }
