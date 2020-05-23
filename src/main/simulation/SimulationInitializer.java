@@ -50,16 +50,17 @@ public class SimulationInitializer {
         }
     }
 
-    private void placeCars(Settings settigns, int i, int nMax, ArrayList<Road> roads) {
+    private void placeCars(Settings settings, int i, int nMax, ArrayList<Road> roads) {
         for (int j = 0; j < nMax; j++){
             boolean occupied = true;
             ArrayList<Lane> currentRoadLanes = roads.get(i).getLanes();
             while(occupied){
                 int posX = ThreadLocalRandom.current().nextInt(currentRoadLanes.get(0).getSize());
                 int posY = ThreadLocalRandom.current().nextInt(/*currentRoadLanes.size()*/2);
+
                 if (!currentRoadLanes.get(posY).getLane()[posX].isOccupied()){
                     currentRoadLanes.get(posY).getLane()[posX]
-                            .setVehicle(new Car(settings.getvMaxL() - 1, ThreadLocalRandom.current().nextInt(settings.getvMaxL(), settigns.getvMaxH()), settings.getSlowProbability(), posX, posY));
+                            .setVehicle(new Car(this.settings.getvMaxL() - 1, ThreadLocalRandom.current().nextInt(this.settings.getvMaxL(), settings.getvMaxH()), this.settings.getSlowProbability(), posX, posY));
                     currentRoadLanes.get(posY).getLane()[posX].setOccupied(true);
                     occupied = false;
                 }

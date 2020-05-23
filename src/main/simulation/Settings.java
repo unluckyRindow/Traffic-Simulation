@@ -1,11 +1,14 @@
 package main.simulation;
 
 public class Settings {
+
     private double slowProbability;
     private int vMaxH;
     private int vMaxL;
     private int nCars;
+
     public void setnCars(String time){
+
         switch(time){
             case("rano"):
             case("wczesne popołudnie"):
@@ -27,32 +30,29 @@ public class Settings {
         }
     }
 
-    public int getnCars() {
-        return nCars;
-    }
-
     public void setSlowProbabilityAndvMax(String weather) {
+
         switch(weather){
             case("słońce"):
-                this.slowProbability = 0.05;
-                this.vMaxH = 6;
-                this.vMaxL = 4;
+                slowProbability = 0.05;
+                vMaxH = 6;
+                vMaxL = 4;
                 break;
             case("deszcz"):
             case("mgła"):
-                this.slowProbability = 0.15;
-                this.vMaxH = 4;
-                this.vMaxL = 3;
+                slowProbability = 0.15;
+                vMaxH = 4;
+                vMaxL = 3;
                 break;
             case("śnieg"):
-                this.slowProbability = 0.1;
-                this.vMaxH = 4;
-                this.vMaxL = 3;
+                slowProbability = 0.1;
+                vMaxH = 4;
+                vMaxL = 3;
                 break;
             case("lód"):
-                this.slowProbability = 0.1;
-                this.vMaxH = 3;
-                this.vMaxL = 2;
+                slowProbability = 0.1;
+                vMaxH = 3;
+                vMaxL = 2;
                 break;
         }
     }
@@ -67,5 +67,9 @@ public class Settings {
 
     public int getvMaxL() {
         return vMaxL;
+    }
+
+    public int getnCars() {
+        return nCars;
     }
 }

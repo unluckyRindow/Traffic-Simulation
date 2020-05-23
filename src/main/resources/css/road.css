@@ -1,9 +1,42 @@
 #roadPane{
-    -fx-background-color: #228B22;
+    -fx-background-color: #32CD32;
 }
 .scroll-pane > .viewport {
    -fx-background-color: transparent;
 }
 .scroll-pane {
-   -fx-background-color: #228B22;
+   -fx-background-color: #32CD32;
 }
+
+.scroll-bar:horizontal .track{
+    -fx-background-color: #32CD32;
+}
+
+.scroll-bar:horizontal .thumb{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-padding: 0.166667em 0.833333em 0.25em 0.833333em; /* 2 10 3 10 */
+    -fx-text-fill: -fx-text-base-color;
+}
+
+.scroll-bar:horizontal *.increment-button{
+    -fx-background-color: #32CD32;
+}
+
+.scroll-bar:horizontal *.decrement-button{
+    -fx-background-color: #32CD32;
+}
+
+.scroll-bar:horizontal *.increment-arrow .content{
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal *.decrement-arrow .content{
+    -fx-background-color: black;
+}
+
+.scroll-pane .corner{
+        -fx-background-color: #32CD32;
+}
+
