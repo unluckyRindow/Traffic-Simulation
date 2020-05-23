@@ -2,11 +2,17 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane fx:id="roadPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/road.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RoadController">
     <children>
         <Button alignment="CENTER" layoutX="388.0" layoutY="481.0" minWidth="120.0" mnemonicParsing="false" onAction="#showSimulationScreen" prefHeight="27.0" prefWidth="124.0" text="Back to map" textAlignment="CENTER" />
       <ScrollPane fx:id="firstRoad" layoutX="-1.0" layoutY="327.0" prefHeight="140.0" prefWidth="900.0" stylesheets="@../css/road.css" />
       <ScrollPane fx:id="secondRoad" layoutY="154.0" prefHeight="140.0" prefWidth="900.0" stylesheets="@../css/road.css" />
+      <Label fx:id="segmentId" alignment="CENTER" layoutY="66.0" textAlignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
     </children>
 </Pane>
