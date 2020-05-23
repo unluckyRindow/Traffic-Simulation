@@ -39,26 +39,26 @@ public class RoadController {
 
 
     public void startViewUpdater(){
-        draw(simulation.getBypass().segmentsClockWise.get(roadId), simulation.getBypass().segmentsAntiClockWise.get(roadId));
+        draw(simulation.getBypass().segmentsClockWise.get(roadId).getSIZE(), simulation.getBypass().segmentsClockWise
+                .get(roadId).getLanes().size());
         setSegmentId(roadId);
-        updater = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                draw(simulation.getBypass().segmentsClockWise.get(roadId), simulation.getBypass().segmentsAntiClockWise.get(roadId));
-            }
-        }));
+        updater = new Timeline(new KeyFrame(Duration.seconds(1), event -> draw(simulation.getBypass().segmentsClockWise
+                .get(roadId).getSIZE(), simulation.getBypass().segmentsClockWise.get(roadId).getLanes().size())));
         updater.setCycleCount(Timeline.INDEFINITE);
         updater.play();
     }
 
-    public void draw(Road firstRoad, Road secondRoad){
+    public void draw(int roadWidth, int roadHeight){
+        Pane firstPane = new Pane();
+        Pane secondPane = new Pane();
+        firstPane.getChildren().add(new Rectangle(roadWidth*24,roadHeight*24, Color.GRAY));
+        secondPane.getChildren().add(new Rectangle(roadWidth*24,roadHeight*24, Color.GRAY));
         GridPane firstGrid = new GridPane();
         GridPane secondGrid = new GridPane();
         Rectangle rectangle1, rectangle2;
 
-        for (int i = 0; i < firstRoad.getLanes().size(); i++){
-            for (int j = 0; j < firstRoad.getSIZE(); j++){
+        for (int i = 0; i < roadHeight; i++){
+            for (int j = 0; j < roadWidth; j++){
 
                 rectangle1 = new Rectangle();
                 rectangle1.setHeight(24);
@@ -69,14 +69,15 @@ public class RoadController {
 
                 rectangle1.setFill(
                         simulation.getBypass().segmentsClockWise.get(roadId).getLanes().get(i).getLane()[j].isOccupied() ?
-                                new ImagePattern(new Image("/main/resources/car_clockwise.png")) :
-                                Color.ROYALBLUE
+                                new ImagePattern(new Image("/main/resources/car_clockwise.png")):
+                                Color.GRAY
                 );
 
                 rectangle2.setFill(
-                        simulation.getBypass().segmentsAntiClockWise.get(roadId).getLanes().get(i).getLane()[simulation.getBypass().segmentsAntiClockWise.get(roadId).getSIZE() - j - 1].isOccupied() ?
+                        simulation.getBypass().segmentsAntiClockWise.get(roadId).getLanes().get(i).getLane()[simulation
+                                .getBypass().segmentsAntiClockWise.get(roadId).getSIZE() - j - 1].isOccupied() ?
                                 new ImagePattern(new Image("/main/resources/car_anticlockwise.png")) :
-                                Color.ROYALBLUE
+                                Color.GRAY
                 );
 
                 firstGrid.add(rectangle1, j, i,1,1);
@@ -84,9 +85,12 @@ public class RoadController {
 
             }
         }
-        this.firstRoad.setContent(firstGrid);
-        this.secondRoad.setContent(secondGrid);
+        firstPane.getChildren().add(firstGrid);
+        secondPane.getChildren().add(secondGrid);
+        this.firstRoad.setContent(firstPane);
+        this.secondRoad.setContent(secondPane);
     }
+
 
 
     @FXML
