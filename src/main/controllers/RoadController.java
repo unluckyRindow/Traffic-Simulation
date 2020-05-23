@@ -51,8 +51,8 @@ public class RoadController {
     public void draw(int roadWidth, int roadHeight){
         Pane firstPane = new Pane();
         Pane secondPane = new Pane();
-        firstPane.getChildren().add(new Rectangle(roadWidth*24,roadHeight*24, Color.GRAY));
-        secondPane.getChildren().add(new Rectangle(roadWidth*24,roadHeight*24, Color.GRAY));
+        firstPane.getChildren().add(new Rectangle(roadWidth*24,roadHeight*24, Color.ROYALBLUE));
+        secondPane.getChildren().add(new Rectangle(roadWidth*24,roadHeight*24, Color.ROYALBLUE));
         GridPane firstGrid = new GridPane();
         GridPane secondGrid = new GridPane();
         Rectangle rectangle1, rectangle2;
@@ -70,14 +70,14 @@ public class RoadController {
                 rectangle1.setFill(
                         simulation.getBypass().segmentsClockWise.get(roadId).getLanes().get(i).getLane()[j].isOccupied() ?
                                 new ImagePattern(new Image("/main/resources/car_clockwise.png")):
-                                Color.GRAY
+                                Color.ROYALBLUE
                 );
 
                 rectangle2.setFill(
                         simulation.getBypass().segmentsAntiClockWise.get(roadId).getLanes().get(i).getLane()[simulation
                                 .getBypass().segmentsAntiClockWise.get(roadId).getSIZE() - j - 1].isOccupied() ?
                                 new ImagePattern(new Image("/main/resources/car_anticlockwise.png")) :
-                                Color.GRAY
+                                Color.ROYALBLUE
                 );
 
                 firstGrid.add(rectangle1, j, i,1,1);
