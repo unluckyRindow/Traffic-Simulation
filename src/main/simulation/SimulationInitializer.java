@@ -42,6 +42,28 @@ public class SimulationInitializer {
     public void insertVehicles(Bypass bypass, Settings settings){
         this.settings = settings;
 
+/*        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[200].setVehicle(
+                new Car(5,5,0.01, 200, 2)
+        );
+        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[200].setOccupied(true);
+
+        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[202].setVehicle(
+                new Car(5,5,0.01, 202, 2)
+        );
+        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[202].setOccupied(true);
+
+        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[203].setVehicle(
+                new Car(5,5,0.01, 203, 2)
+        );
+        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[203].setOccupied(true);
+
+        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[204].setVehicle(
+                new Car(5,5,0.01, 204, 2)
+        );
+        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[204].setOccupied(true);*/
+
+
+        //code below works just fine
         for (int i = 0; i < bypass.segmentsQuantity; i++){
             int nMax = ThreadLocalRandom.current().nextInt(settings.getnCars() - 5, settings.getnCars() + 6);
             placeCars(settings, i, nMax, bypass.segmentsClockWise);
@@ -51,12 +73,13 @@ public class SimulationInitializer {
     }
 
     private void placeCars(Settings settings, int i, int nMax, ArrayList<Road> roads) {
+        //code below works just fine
         for (int j = 0; j < nMax; j++){
             boolean occupied = true;
             ArrayList<Lane> currentRoadLanes = roads.get(i).getLanes();
             while(occupied){
                 int posX = ThreadLocalRandom.current().nextInt(currentRoadLanes.get(0).getSize());
-                int posY = ThreadLocalRandom.current().nextInt(/*currentRoadLanes.size()*/2);
+                int posY = ThreadLocalRandom.current().nextInt(currentRoadLanes.size());
 
                 if (!currentRoadLanes.get(posY).getLane()[posX].isOccupied()){
                     currentRoadLanes.get(posY).getLane()[posX]

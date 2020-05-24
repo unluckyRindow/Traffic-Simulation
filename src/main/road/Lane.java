@@ -29,30 +29,23 @@ public class Lane {
             lane[newPosition].setVehicle(vehicle);
             lane[newPosition].setOccupied(true);
         } else {
-            int distanceToEnd = SIZE - position > 10 ? 5 : SIZE - position;
+            int distanceToEnd = SIZE - position > 6 ? 5 : SIZE - position;
+            if (vehicle.getPosY() >= roadSegment.getNextSegment().getLanes().size()) vehicle.setPosY(1);
             changeSegment(vehicle, distanceToEnd);
         }
         clearCell(position);
     }
 
     public void changeSegment(Vehicle vehicle, int distanceToEnd){
-        //on segment change place vehicle on first cell TODO place vehicle on computed cell; velocity - distance to end
-        roadSegment.getNextSegment().getLanes().get(vehicle.getPosY()).getLane()[0].setOccupied(true);
-        roadSegment.getNextSegment().getLanes().get(vehicle.getPosY()).getLane()[0].setVehicle(vehicle);
-        vehicle.setPosX(0);
-        //code below should decide about vehicle transfer but doesnt work for now
-        /*
-        int maxNewPosX = distanceToEnd - vehicle.getVelocity();
+        int maxNewPosX = vehicle.getVelocity() - distanceToEnd;
         for (int i = maxNewPosX; i >= 0; i--){
             if (!roadSegment.getNextSegment().getLanes().get(vehicle.getPosY()).getLane()[i].isOccupied() ){
-                System.out.println("Setting on " + roadSegment.getNextSegment().getRoadId() + " on: " + i + " " + vehicle.getPosY());
                 roadSegment.getNextSegment().getLanes().get(vehicle.getPosY()).getLane()[i].setOccupied(true);
                 roadSegment.getNextSegment().getLanes().get(vehicle.getPosY()).getLane()[i].setVehicle(vehicle);
                 vehicle.setPosX(i);
                 break;
             }
         }
-        */
 
     }
 
