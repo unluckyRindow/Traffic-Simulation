@@ -19,4 +19,6 @@ public interface Vehicle {
     int getPosY();
     void setPosY(int posY);
     int move();
+    boolean isChangedLane();
+    void setChangedLane(boolean changedLane);
     }

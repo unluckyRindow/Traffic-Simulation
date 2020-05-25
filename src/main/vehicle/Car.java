@@ -12,6 +12,7 @@ public class Car implements Vehicle {
     private Cell[] frontNeighbourhood;
     private int posX;
     private int posY;
+    private boolean changedLane;
 
     public Car(int velocity, int maxVelocity, double slowProbability, int posX, int posY) {
         this.velocity = velocity;
@@ -19,6 +20,7 @@ public class Car implements Vehicle {
         this.slowProbability = slowProbability;
         this.posX = posX;
         this.posY = posY;
+        this.changedLane = false;
     }
 
     public Cell[] getFrontNeighbourhood() {
@@ -77,6 +79,10 @@ public class Car implements Vehicle {
         velocity--;
     }
 
+    public void changeLaneAttempt(){
+        posY = posY == 0 ? 1 : posY - 1;
+
+    }
 
     public int move(){
 
@@ -90,6 +96,11 @@ public class Car implements Vehicle {
         for(Cell cell: frontNeighbourhood){
             if (cell.isOccupied()){
                 int distance = cell.getVehicle().getPosX() - this.getPosX();
+                if (new Random().nextDouble() <= 0.25 && !changedLane) {
+                    changeLaneAttempt();
+                    changedLane = true;
+                    return posX;
+                }
                 while(velocity >= distance){
                     decreaseVelocity();
                 }
@@ -102,5 +113,13 @@ public class Car implements Vehicle {
         //change position and returns new coordinates
         posX += velocity;
         return posX;
+    }
+
+    public boolean isChangedLane() {
+        return changedLane;
+    }
+
+    public void setChangedLane(boolean changedLane) {
+        this.changedLane = changedLane;
     }
 }

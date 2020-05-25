@@ -22,16 +22,26 @@ public class Lane {
     //method maintaining movement of vehicles in specific lane
     public void moveVehicle(int position){
         Vehicle vehicle = lane[position].getVehicle();
+        int laneIndex = vehicle.getPosY();
         vehicle.setFrontNeighbourhood(Arrays.copyOfRange(lane, position + 1, position + vehicle.getMaxVelocity() + 1));
 
         int newPosition = vehicle.move();
-        if (newPosition <= SIZE){
-            lane[newPosition].setVehicle(vehicle);
-            lane[newPosition].setOccupied(true);
+
+        if (vehicle.isChangedLane() && (!roadSegment.getLanes().get(vehicle.getPosY()).getLane()[position].isOccupied())) {
+            roadSegment.getLanes().get(vehicle.getPosY()).getLane()[position].setVehicle(vehicle);
+            roadSegment.getLanes().get(vehicle.getPosY()).getLane()[position].setOccupied(true);
+            roadSegment.getLanes().get(vehicle.getPosY()).moveVehicle(position);
         } else {
-            int distanceToEnd = SIZE - position > 6 ? 5 : SIZE - position;
-            if (vehicle.getPosY() >= roadSegment.getNextSegment().getLanes().size()) vehicle.setPosY(1);
-            changeSegment(vehicle, distanceToEnd);
+            vehicle.setPosY(laneIndex);
+            vehicle.setChangedLane(false);
+            if (newPosition <= SIZE){
+                lane[newPosition].setVehicle(vehicle);
+                lane[newPosition].setOccupied(true);
+            } else {
+                int distanceToEnd = SIZE - position > 6 ? 5 : SIZE - position;
+                if (vehicle.getPosY() >= roadSegment.getNextSegment().getLanes().size()) vehicle.setPosY(1);
+                changeSegment(vehicle, distanceToEnd);
+            }
         }
         clearCell(position);
     }

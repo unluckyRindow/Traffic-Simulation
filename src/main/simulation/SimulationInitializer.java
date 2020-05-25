@@ -42,25 +42,17 @@ public class SimulationInitializer {
     public void insertVehicles(Bypass bypass, Settings settings){
         this.settings = settings;
 
-/*        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[200].setVehicle(
-                new Car(5,5,0.01, 200, 2)
+  /*      bypass.segmentsClockWise.get(0).getLanes().get(2).getLane()[0].setVehicle(
+                new Car(4,5,0.01, 0, 2)
         );
-        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[200].setOccupied(true);
+        bypass.segmentsClockWise.get(0).getLanes().get(2).getLane()[0].setOccupied(true);
 
-        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[202].setVehicle(
-                new Car(5,5,0.01, 202, 2)
-        );
-        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[202].setOccupied(true);
 
-        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[203].setVehicle(
-                new Car(5,5,0.01, 203, 2)
+        bypass.segmentsClockWise.get(0).getLanes().get(2).getLane()[20].setVehicle(
+                new Car(2,2,0.01, 20, 2)
         );
-        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[203].setOccupied(true);
-
-        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[204].setVehicle(
-                new Car(5,5,0.01, 204, 2)
-        );
-        bypass.segmentsClockWise.get(10).getLanes().get(2).getLane()[204].setOccupied(true);*/
+        bypass.segmentsClockWise.get(0).getLanes().get(2).getLane()[20].setOccupied(true);
+*/
 
 
         //code below works just fine
