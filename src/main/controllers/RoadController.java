@@ -18,6 +18,8 @@ import java.io.IOException;
 
 public class RoadController {
 
+    //todo showing statistics  (i.e. number of cars, average velocity etc.)
+
     @FXML
     Label segmentId;
     @FXML

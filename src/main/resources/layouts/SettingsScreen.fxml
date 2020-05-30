@@ -26,14 +26,15 @@
             </FXCollections>
          </items>
       </ChoiceBox>
-      <ChoiceBox fx:id="weather" layoutX="518.0" layoutY="318.0" prefHeight="27.0" prefWidth="123.0" value="słońce">
+      <ChoiceBox fx:id="weather" layoutX="518.0" layoutY="318.0" prefHeight="27.0" prefWidth="123.0" value="clear">
          <items>
             <FXCollections fx:factory="observableArrayList">
-               <String fx:value="słońce" />
-               <String fx:value="deszcz" />
-               <String fx:value="mgła" />
-               <String fx:value="śnieg" />
-               <String fx:value="lód" />
+               <String fx:value="clear" />
+               <String fx:value="rain" />
+               <String fx:value="clouds" />
+               <String fx:value="atmosphere" />
+               <String fx:value="snow" />
+               <String fx:value="thunderstorm" />
             </FXCollections>
          </items>
       </ChoiceBox>
