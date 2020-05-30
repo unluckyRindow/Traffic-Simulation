@@ -6,26 +6,38 @@ public class Settings {
     private int vMaxH;
     private int vMaxL;
     private int nCars;
+    private String hour;
 
     public void setnCars(String time){
 
         switch(time){
-            case("rano"):
-            case("wczesne popołudnie"):
-            case("wieczór"):
+            case("early afternoon"):
+                hour = "13";
                 nCars = 25;
                 break;
-            case("wczesne rano"):
+            case("evening"):
+                hour = "20";
+                nCars = 25;
+                break;
+            case("early morning"):
+                hour = "06";
                 nCars = 40;
                 break;
-            case("przedpołudnie"):
+            case("forenoon"):
+                hour = "11";
                 nCars = 20;
                 break;
-            case("późne popołudnie"):
+            case("late afternoon"):
+                hour = "16";
                 nCars = 45;
                 break;
-            case("noc"):
+            case("night"):
+                hour = "02";
                 nCars = 10;
+                break;
+            default:
+                hour = "09";
+                nCars = 25;
                 break;
         }
     }
@@ -54,31 +66,37 @@ public class Settings {
     public void setSlowProbabilityAndvMax(String weather) {
 
         switch(weather){
-            case("clear"):
-                slowProbability = 0.05;
-                vMaxH = 6;
-                vMaxL = 4;
-                break;
             case("clouds"):
+            case("cloudy"):
+            case("wind"):
                 slowProbability = 0.05;
                 vMaxH = 5;
                 vMaxL = 4;
                 break;
             case("rain"):
             case("atmosphere"):
+            case("fog"):
                 slowProbability = 0.15;
                 vMaxH = 4;
                 vMaxL = 3;
                 break;
             case("snow"):
+            case("sleet"):
                 slowProbability = 0.1;
                 vMaxH = 4;
                 vMaxL = 3;
                 break;
             case("thunderstorm"):
+            case("hail"):
+            case("tornado"):
                 slowProbability = 0.1;
                 vMaxH = 3;
                 vMaxL = 2;
+                break;
+            default:
+                slowProbability = 0.05;
+                vMaxH = 6;
+                vMaxL = 4;
                 break;
         }
     }
@@ -93,6 +111,10 @@ public class Settings {
 
     public int getvMaxL() {
         return vMaxL;
+    }
+
+    public String getHour() {
+        return hour;
     }
 
     public int getnCars() {

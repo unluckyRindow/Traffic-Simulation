@@ -30,6 +30,7 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/SettingsScreen.fxml"));
         Pane pane = loader.load();
         SettingsController settingsController = loader.getController();
+        settingsController.setDateValue();
         settingsController.setMainController(mainController);
         settingsController.setMenuController(this);
         setSettingsController(settingsController);
