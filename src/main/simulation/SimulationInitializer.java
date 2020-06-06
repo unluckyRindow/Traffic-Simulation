@@ -25,7 +25,6 @@ public class SimulationInitializer {
         for (int i = 0; i < segmentsQuantity; i++){
             roads.get(i).setNextSegment(roads.get(i == 17 ? 0 : i + 1));
         }
-
     }
 
     public void initRoadsAntiClockWise(ArrayList<Road> roads){
@@ -38,7 +37,6 @@ public class SimulationInitializer {
         }
     }
 
-    //TODO vehicles insert based on settings
     public void insertVehicles(Bypass bypass, Settings settings){
         this.settings = settings;
 
@@ -55,7 +53,6 @@ public class SimulationInitializer {
 */
 
 
-        //code below works just fine
         for (int i = 0; i < bypass.segmentsQuantity; i++){
             int nMax = ThreadLocalRandom.current().nextInt(settings.getnCars() - 5, settings.getnCars() + 6);
             placeCars(settings, i, nMax, bypass.segmentsClockWise);
@@ -65,7 +62,6 @@ public class SimulationInitializer {
     }
 
     private void placeCars(Settings settings, int i, int nMax, ArrayList<Road> roads) {
-        //code below works just fine
         for (int j = 0; j < nMax; j++){
             boolean occupied = true;
             ArrayList<Lane> currentRoadLanes = roads.get(i).getLanes();
