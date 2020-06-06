@@ -18,6 +18,12 @@ import java.io.IOException;
 
 public class RoadController {
 
+    //todo showing statistics  (i.e. number of cars, average velocity etc.)
+
+    @FXML
+    Label numberOfCars;
+    @FXML
+    Label averageVelocity;
     @FXML
     Label segmentId;
     @FXML
@@ -35,9 +41,30 @@ public class RoadController {
     public void startViewUpdater(){
         draw(simulation.getBypass().segmentsClockWise.get(roadId).getSIZE(), simulation.getBypass().segmentsClockWise
                 .get(roadId).getLanes().size());
+        numberOfCars.setText(Integer.toString(simulation.getBypass().segmentsClockWise.get(roadId).getNumberOfCars()
+                + simulation.getBypass().segmentsAntiClockWise.get(roadId).getNumberOfCars()));
+
+        averageVelocity.setText(String.format("%.2f",
+                ((simulation.getBypass().segmentsClockWise.get(roadId).getAverageVelocity()
+                        + simulation.getBypass().segmentsAntiClockWise.get(roadId).getAverageVelocity())
+                        / 2)
+        ));
+
         setSegmentId(roadId);
-        updater = new Timeline(new KeyFrame(Duration.seconds(1), event -> draw(simulation.getBypass().segmentsClockWise
-                .get(roadId).getSIZE(), simulation.getBypass().segmentsClockWise.get(roadId).getLanes().size())));
+        updater = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            draw(simulation.getBypass().segmentsClockWise
+                    .get(roadId).getSIZE(), simulation.getBypass().segmentsClockWise.get(roadId).getLanes().size());
+
+            numberOfCars.setText(Integer.toString(simulation.getBypass().segmentsClockWise.get(roadId).getNumberOfCars()
+                    + simulation.getBypass().segmentsAntiClockWise.get(roadId).getNumberOfCars()));
+
+            averageVelocity.setText(String.format("%.2f",
+                    ((simulation.getBypass().segmentsClockWise.get(roadId).getAverageVelocity()
+                            + simulation.getBypass().segmentsAntiClockWise.get(roadId).getAverageVelocity())
+                    / 2)
+            ));
+        }));
+
         updater.setCycleCount(Timeline.INDEFINITE);
         updater.play();
     }

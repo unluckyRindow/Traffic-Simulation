@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class MenuController {
@@ -19,6 +21,7 @@ public class MenuController {
         settingsController.setMainController(mainController);
         settingsController.setMenuController(this);
         setSettingsController(settingsController);
+        settingsController.setMenuStart(true);
         settingsController.startSimulation();
     }
 
@@ -27,6 +30,7 @@ public class MenuController {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main/resources/layouts/SettingsScreen.fxml"));
         Pane pane = loader.load();
         SettingsController settingsController = loader.getController();
+        settingsController.setDateValue();
         settingsController.setMainController(mainController);
         settingsController.setMenuController(this);
         setSettingsController(settingsController);

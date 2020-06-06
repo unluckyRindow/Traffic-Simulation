@@ -14,7 +14,7 @@
       <Button layoutX="243.0" layoutY="331.0" minWidth="123.0" mnemonicParsing="false" onAction="#openSettings" text="Settings" />
       <Button layoutX="243.0" layoutY="427.0" minWidth="123.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
       <Button layoutX="243.0" layoutY="232.0" minWidth="123.0" mnemonicParsing="false" onAction="#startSimulation" text="Start" />
-      <Label alignment="CENTER" layoutX="544.0" layoutY="236.0" text="Start with default options">
+      <Label alignment="CENTER" layoutX="544.0" layoutY="236.0" text="Start with current conditions">
          <font>
             <Font size="15.0" />
          </font></Label>

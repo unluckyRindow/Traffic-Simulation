@@ -1,11 +1,9 @@
 package main.simulation;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import main.road.Bypass;
 import main.road.Lane;
 import main.road.Road;
 import main.vehicle.Car;
-
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -40,19 +38,8 @@ public class SimulationInitializer {
     public void insertVehicles(Bypass bypass, Settings settings){
         this.settings = settings;
 
-  /*      bypass.segmentsClockWise.get(0).getLanes().get(2).getLane()[0].setVehicle(
-                new Car(4,5,0.01, 0, 2)
-        );
-        bypass.segmentsClockWise.get(0).getLanes().get(2).getLane()[0].setOccupied(true);
 
-
-        bypass.segmentsClockWise.get(0).getLanes().get(2).getLane()[20].setVehicle(
-                new Car(2,2,0.01, 20, 2)
-        );
-        bypass.segmentsClockWise.get(0).getLanes().get(2).getLane()[20].setOccupied(true);
-*/
-
-
+        //code below works just fine
         for (int i = 0; i < bypass.segmentsQuantity; i++){
             int nMax = ThreadLocalRandom.current().nextInt(settings.getnCars() - 5, settings.getnCars() + 6);
             placeCars(settings, i, nMax, bypass.segmentsClockWise);
