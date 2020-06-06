@@ -30,5 +30,9 @@
       <Button layoutX="621.0" layoutY="195.0" mnemonicParsing="false" onAction="#showRoadScreen" opacity="0.0" prefHeight="31.0" prefWidth="70.0" rotate="77.0" text="Button" userData="5" />
       <Button layoutX="633.0" layoutY="145.0" mnemonicParsing="false" onAction="#showRoadScreen" opacity="0.0" prefHeight="31.0" prefWidth="25.0" text="Button" userData="4" />
       <Button layoutX="467.0" layoutY="77.0" mnemonicParsing="false" onAction="#showRoadScreen" opacity="0.0" prefHeight="36.0" prefWidth="135.0" rotate="20.3" text="Button" userData="2" />
+      <Label layoutX="39.0" layoutY="503.0" prefHeight="27.0" prefWidth="90.0" text="Number of cars:" />
+      <Label layoutX="27.0" layoutY="538.0" prefHeight="27.0" prefWidth="102.0" text="Average velocity:" />
+      <Label fx:id="numberOfCars" layoutX="139.0" layoutY="508.0" prefHeight="17.0" prefWidth="63.0" text="0" />
+      <Label fx:id="averageVelocity" layoutX="139.0" layoutY="543.0" prefHeight="17.0" prefWidth="28.0" text="0" />
    </children>
 </Pane>

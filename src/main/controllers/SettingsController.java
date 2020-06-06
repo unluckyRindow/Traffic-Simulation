@@ -82,6 +82,7 @@ public class SettingsController {
         setSimulationController(simulationController);
         simulationController.setSettingsController(this);
         mainController.setScreen(pane);
+        simulationController.startViewUpdater();
     }
 
     public String getCurrentWeather() throws IOException {

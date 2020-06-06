@@ -71,7 +71,7 @@ public class Settings {
             case("wind"):
                 slowProbability = 0.05;
                 vMaxH = 5;
-                vMaxL = 4;
+                vMaxL = 3;
                 break;
             case("rain"):
             case("atmosphere"):
@@ -82,21 +82,21 @@ public class Settings {
                 break;
             case("snow"):
             case("sleet"):
-                slowProbability = 0.1;
+                slowProbability = 0.2;
                 vMaxH = 4;
                 vMaxL = 3;
                 break;
             case("thunderstorm"):
             case("hail"):
             case("tornado"):
-                slowProbability = 0.1;
+                slowProbability = 0.3;
                 vMaxH = 3;
                 vMaxL = 2;
                 break;
             default:
                 slowProbability = 0.05;
                 vMaxH = 6;
-                vMaxL = 4;
+                vMaxL = 3;
                 break;
         }
     }
