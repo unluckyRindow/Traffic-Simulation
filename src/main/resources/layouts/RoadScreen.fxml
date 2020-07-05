@@ -14,9 +14,9 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Label fx:id="numberOfCars" layoutX="139.0" layoutY="508.0" prefHeight="17.0" prefWidth="28.0" text="0" />
-      <Label fx:id="averageVelocity" layoutX="139.0" layoutY="543.0" prefHeight="17.0" prefWidth="28.0" text="0" />
-      <Label layoutX="39.0" layoutY="503.0" prefHeight="27.0" prefWidth="90.0" text="Number of cars:" />
-      <Label layoutX="27.0" layoutY="538.0" prefHeight="27.0" prefWidth="102.0" text="Average velocity:" />
+      <Label fx:id="numberOfCars" layoutX="139.0" layoutY="508.0" prefHeight="17.0" prefWidth="90.0" text="0" />
+      <Label fx:id="averageVelocity" layoutX="139.0" layoutY="543.0" prefHeight="17.0" prefWidth="90.0" text="0" />
+      <Label layoutX="5.0" layoutY="503.0" prefHeight="27.0" prefWidth="124.0" text="Number of cars:" />
+      <Label layoutX="5.0" layoutY="538.0" prefHeight="27.0" prefWidth="124.0" text="Average velocity:" />
     </children>
 </Pane>

@@ -25,7 +25,7 @@
                <String fx:value="morning" />
                <String fx:value="forenoon" />
                <String fx:value="early afternoon" />
-               <String fx:value="late morning" />
+               <String fx:value="late afternoon" />
                <String fx:value="evening" />
                <String fx:value="night" />
             </FXCollections>

@@ -85,7 +85,7 @@ public class SimulationController {
         }
         avg /= simulation.getBypass().segmentsQuantity * 2;
 
-        return avg;
+        return avg*27;
     }
 
     public void setSimulation(Simulation simulation) {
